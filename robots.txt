@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://accidentconnect2.github.io/accident-connect/sitemap.xml
