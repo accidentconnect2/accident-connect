@@ -295,11 +295,13 @@
     .split img.round{height:320px}
     .foot-grid{grid-template-columns:1fr 1fr}
     section{padding:54px 0}
-    .mobile-bar{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;gap:10px}
+    .mobile-bar{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;gap:10px;transition:transform .3s ease,opacity .3s ease}
+    .mobile-bar.bar-hidden{transform:translateY(140%);opacity:0;pointer-events:none}
     .mobile-bar a{flex:1;box-shadow:var(--shadow-lg)}
     body{padding-bottom:76px}
   }
   @media (max-width:560px){
+    .hero h1{font-size:2rem;padding-left:3px}
     .lang-switch .lang-btn{padding:7px 10px;font-size:.82rem}
     .brand small{display:none}
     .grid-3,.steps,.cover-grid,.f-grid{grid-template-columns:1fr}
@@ -1867,6 +1869,19 @@
     b.addEventListener('click', function(){ setTimeout(applyLang, 30); });
   });
   applyLang();
+})();
+</script>
+<script>
+(function(){
+  var bar=document.querySelector('.mobile-bar');
+  if(!bar) return;
+  var lastY=window.scrollY||0;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY||0;
+    if(y>140 && y>lastY){bar.classList.add('bar-hidden');}
+    else{bar.classList.remove('bar-hidden');}
+    lastY=y;
+  },{passive:true});
 })();
 </script>
 </body>
